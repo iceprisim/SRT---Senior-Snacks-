@@ -53,13 +53,13 @@ public class CrashoutERA extends LinearOpMode {
 
         }
 
-        public class superSpin implements Action { //inside class "Spiner" create action Spin 1 (will rotate spin mechanism 1/3)
+        public class superSpin implements Action { //inside class "Spiner" create action superSpin (for some reason the encoders aint working and it spins forever)
             private boolean initialized = false;
 
             @Override
             public boolean run(@NonNull TelemetryPacket packet) { //spin motors until the (encoder value below) is true
                 if (!initialized) {
-                    pinLeft.setPower(0.3); //halving speed cuz idk how fast it will spin
+                    pinLeft.setPower(0.3); //lowering speed cuz idk how fast it will spin
                     pinRight.setPower(0.3);
 
                     initialized = true;
@@ -76,7 +76,6 @@ public class CrashoutERA extends LinearOpMode {
                     return false;
                 }
 
-                //create an acation for spin2 and an action for spin 3
 
                 //probably need to create actions for intaking the balls and shooting the balls (make different public classes for each to differentiate easier)
 
@@ -88,7 +87,7 @@ public class CrashoutERA extends LinearOpMode {
             return new superSpin();
         }
 
-        public class PewPew implements Action { //inside class "Spiner" create action Spin 1 (will rotate spin mechanism 1/3)
+        public class PewPew implements Action { //inside class "Spiner" create action PewPew (activates shooter motors) 
 
             @Override
             public boolean run(@NonNull TelemetryPacket packet){
@@ -113,11 +112,11 @@ public class CrashoutERA extends LinearOpMode {
 
             //define mechanum drive and the other harware maps/ imports
         MecanumDrive drive = new MecanumDrive(hardwareMap, beginPose);
-        Spinner spin  = new Spinner(hardwareMap); //from public class Spinner create variable -Spin- to call subsections (spin1, etc) later.
+        Spinner spin  = new Spinner(hardwareMap); //from public class Spinner create variable -spin- to call subsections (superSpin, PewPew, etc) later.
         ElapsedTime runtime = new ElapsedTime();
 
         TrajectoryActionBuilder Align1 = drive.actionBuilder(beginPose)
-                .lineToY(40)
+                .lineToY(50)
                 .waitSeconds(1);
 
         TrajectoryActionBuilder Align2 = drive.actionBuilder(imAbigBoy)
@@ -149,6 +148,7 @@ public class CrashoutERA extends LinearOpMode {
             );
         }
     }
+
 
 
 
