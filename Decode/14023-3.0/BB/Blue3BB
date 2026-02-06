@@ -158,7 +158,7 @@ public class Blue3BB extends LinearOpMode {
         public class angle1 implements Action{
             @Override
             public boolean run(@NonNull TelemetryPacket packet){
-                shootAngle.setPosition(0.175);
+                shootAngle.setPosition(0.1755);
                 return false;
             }
         }
@@ -235,7 +235,7 @@ public class Blue3BB extends LinearOpMode {
                 .setTangent(Math.PI/2)
                 .lineToY(-35)
                 .waitSeconds(0.1)
-                .splineToSplineHeading(new Pose2d(0, -45, 2.08), Math.PI / 2);
+                .splineToSplineHeading(new Pose2d(0, -45, 2.082), Math.PI / 2);
 
         TrajectoryActionBuilder park = drive.actionBuilder(postprePose)
                 .splineToLinearHeading(new Pose2d(-25, -50, 0), Math.PI)
